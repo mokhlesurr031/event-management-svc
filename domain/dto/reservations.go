@@ -1,6 +1,6 @@
 package dto
 
-type Reservations struct {
+type ReservationsDto struct {
 	Name       string `json:"name"`
 	Email      string `json:"email"`
 	WorkshopId uint   `json:"workshop_id"`
