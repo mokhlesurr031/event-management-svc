@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/mokhlesurr031/event-management-svc/domain"
 	"gorm.io/gorm"
@@ -24,7 +23,6 @@ func (e *WorkshopSQLStorage) WorkshopList(ctx context.Context, ctr *domain.Works
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(eventDetail)
 
 	workshops := []*domain.Workshop{}
 	if err := e.db.Find(&workshops, "event_id = ?", *ctr.EventId).Error; err != nil {
@@ -39,7 +37,33 @@ func (e *WorkshopSQLStorage) WorkshopList(ctx context.Context, ctr *domain.Works
 		Workshop: workshops,
 	}
 
-	fmt.Println(result)
-
 	return result, nil
+}
+
+func (e *WorkshopSQLStorage) WorkshopDetails(ctx context.Context, ctr *domain.WorkshopCriteria) (*domain.WorkshopDetails, error) {
+	workshopDetail := &domain.Workshop{}
+
+	if ctr.Id != nil {
+		err := e.db.First(&workshopDetail, "id=?", ctr.Id).Error
+		if err != nil {
+			return nil, err
+		}
+		var count int64
+		err = e.db.Model(&domain.Reservation{}).Where("workshop_id = ?", *ctr.Id).Count(&count).Error
+		if err != nil {
+			return nil, err
+		}
+
+		workshopDetails := &domain.WorkshopDetails{
+			Id:               &workshopDetail.Id,
+			Title:            &workshopDetail.Title,
+			Description:      &workshopDetail.Description,
+			StartAt:          &workshopDetail.StartAt,
+			EndAt:            &workshopDetail.EndAt,
+			TotaReservations: int(count),
+		}
+
+		return workshopDetails, nil
+	}
+	return nil, nil
 }

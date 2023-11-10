@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"fmt"
 	"strconv"
 
 	"github.com/mokhlesurr031/event-management-svc/domain"
@@ -45,7 +44,6 @@ func (e *EventSQLStorage) EventList(ctx context.Context, ctr *domain.EventCriter
 	if pagination.Total%pagination.PerPage > 0 {
 		pagination.TotalPages++
 	}
-	fmt.Println(pagination)
 
 	res := &domain.EventCriteriaPagination{}
 	res.Events = eventList[perPageInt*currentPageInt-perPageInt : perPageInt*currentPageInt]
@@ -62,7 +60,6 @@ func (e *EventSQLStorage) EventDetails(ctx context.Context, ctr *domain.EventDet
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println(eventDetail)
 		var count int64
 		err = e.db.Model(&domain.Workshop{}).Where("event_id = ?", *ctr.Id).Count(&count).Error
 		if err != nil {

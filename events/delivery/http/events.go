@@ -54,11 +54,13 @@ func (e *EventHandler) EventDetails(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
 	eventId := r.URL.Query().Get("eventId")
 	id64, err := strconv.ParseUint(eventId, 10, 64)
+
 	if err != nil {
 		// Handle the error, maybe return a bad request response
 		http.Error(w, "Invalid eventId", http.StatusBadRequest)
 		return
 	}
+
 	id := uint(id64)
 	eventDetails := &domain.EventDetails{}
 	eventDetails.Id = &id

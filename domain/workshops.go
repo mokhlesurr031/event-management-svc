@@ -31,10 +31,21 @@ type WorkshopList struct {
 	Workshop []*Workshop `json:"workshops"`
 }
 
+type WorkshopDetails struct {
+	Id               *uint      `json:"id"`
+	Title            *string    `json:"title"`
+	Description      *string    `json:"description"`
+	StartAt          *time.Time `json:"start_at"`
+	EndAt            *time.Time `json:"end_at"`
+	TotaReservations int        `json:"total_reservations"`
+}
+
 type WorkshopRepository interface {
 	WorkshopList(ctx context.Context, ctr *WorkshopCriteria) (*WorkshopList, error)
+	WorkshopDetails(ctx context.Context, ctr *WorkshopCriteria) (*WorkshopDetails, error)
 }
 
 type WorkshopUseCase interface {
 	WorkshopList(ctx context.Context, ctr *WorkshopCriteria) (*WorkshopList, error)
+	WorkshopDetails(ctx context.Context, ctr *WorkshopCriteria) (*WorkshopDetails, error)
 }

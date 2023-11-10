@@ -2,7 +2,6 @@ package http
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -22,6 +21,7 @@ func NewHttpHandler(r *chi.Mux, workshopUseCase domain.WorkshopUseCase) {
 
 	r.Route("/api/v1/workshops", func(r chi.Router) {
 		r.Get("/list", handler.WorkshopList)
+		r.Get("/details", handler.WorkshopDetails)
 	})
 }
 
@@ -42,8 +42,6 @@ func (e *WorkshopHandler) WorkshopList(w http.ResponseWriter, r *http.Request) {
 
 	workshopList, err := e.WorkshopUseCase.WorkshopList(ctx, workshops)
 
-	fmt.Println(workshopList)
-
 	if err != nil {
 		log.Println(err)
 	}
@@ -51,5 +49,29 @@ func (e *WorkshopHandler) WorkshopList(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(workshopList); err != nil {
 		log.Println(err)
 	}
+
+}
+
+func (e *WorkshopHandler) WorkshopDetails(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("content-type", "application/json")
+	workshopId := r.URL.Query().Get("workshopId")
+	id64, err := strconv.ParseUint(workshopId, 10, 64)
+	if err != nil {
+		// Handle the error, maybe return a bad request response
+		http.Error(w, "Invalid eventId", http.StatusBadRequest)
+		return
+	}
+	id := uint(id64)
+
+	workshopDetails := &domain.WorkshopCriteria{}
+	workshopDetails.Id = &id
+
+	ctx := r.Context()
+
+	eventData, err := e.WorkshopUseCase.WorkshopDetails(ctx, workshopDetails)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(eventData)
 
 }
