@@ -48,10 +48,8 @@ func (e *EventSQLStorage) EventList(ctx context.Context, ctr *domain.EventCriter
 	fmt.Println(pagination)
 
 	res := &domain.EventCriteriaPagination{}
-	res.Events = eventList
+	res.Events = eventList[perPageInt*currentPageInt-perPageInt : perPageInt*currentPageInt]
 	res.Pagination = pagination
-
-	fmt.Println(eventList)
 
 	return res, nil
 }
