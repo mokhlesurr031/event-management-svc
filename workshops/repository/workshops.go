@@ -18,20 +18,28 @@ type WorkshopSQLStorage struct {
 	db *gorm.DB
 }
 
-func (e *WorkshopSQLStorage) WorkshopList(ctx context.Context, ctr *domain.WorkshopCriteria) ([]*domain.Workshop, error) {
-	workshopList := make([]*domain.Workshop, 0)
+func (e *WorkshopSQLStorage) WorkshopList(ctx context.Context, ctr *domain.WorkshopCriteria) (*domain.WorkshopList, error) {
+	eventDetail := &domain.Event{}
+	err := e.db.First(&eventDetail, "id=?", ctr.EventId).Error
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println(eventDetail)
 
-	if err := e.db.WithContext(ctx).Find(&workshopList).Error; err != nil {
-		if err == gorm.ErrRecordNotFound {
-			return nil, nil
-		}
+	workshops := []*domain.Workshop{}
+	if err := e.db.Find(&workshops, "event_id = ?", *ctr.EventId).Error; err != nil {
 		return nil, err
 	}
 
-	for _, workshop := range workshopList {
-		fmt.Println(workshop.EventId)
-
+	result := &domain.WorkshopList{
+		Id:       &eventDetail.Id,
+		Title:    &eventDetail.Title,
+		StartAt:  &eventDetail.StartAt,
+		EndAt:    &eventDetail.EndAt,
+		Workshop: workshops,
 	}
 
-	return workshopList, nil
+	fmt.Println(result)
+
+	return result, nil
 }

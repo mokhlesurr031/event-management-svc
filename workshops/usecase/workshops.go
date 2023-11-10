@@ -16,6 +16,6 @@ type WorkshopUseCase struct {
 	repo domain.WorkshopRepository
 }
 
-func (e *WorkshopUseCase) WorkshopList(ctx context.Context, ctr *domain.WorkshopCriteria) ([]*domain.Workshop, error) {
+func (e *WorkshopUseCase) WorkshopList(ctx context.Context, ctr *domain.WorkshopCriteria) (*domain.WorkshopList, error) {
 	return e.repo.WorkshopList(ctx, ctr)
 }
