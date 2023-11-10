@@ -53,3 +53,30 @@ func (e *EventSQLStorage) EventList(ctx context.Context, ctr *domain.EventCriter
 
 	return res, nil
 }
+
+func (e *EventSQLStorage) EventDetails(ctx context.Context, ctr *domain.EventDetails) (*domain.EventDetails, error) {
+	eventDetail := &domain.Event{}
+
+	if ctr.Id != nil {
+		err := e.db.First(&eventDetail, "id=?", ctr.Id).Error
+		if err != nil {
+			return nil, err
+		}
+		fmt.Println(eventDetail)
+		var count int64
+		err = e.db.Model(&domain.Workshop{}).Where("event_id = ?", *ctr.Id).Count(&count).Error
+		if err != nil {
+			return nil, err
+		}
+
+		eventDetails := &domain.EventDetails{
+			Id:             &eventDetail.Id,
+			Title:          &eventDetail.Title,
+			StartAt:        &eventDetail.StartAt,
+			EndAt:          &eventDetail.EndAt,
+			TotalWorkshops: int(count),
+		}
+		return eventDetails, nil
+	}
+	return nil, nil
+}
