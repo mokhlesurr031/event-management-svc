@@ -19,10 +19,15 @@ type EventCriteria struct {
 	EndAt   *time.Time `json:"end_at"`
 }
 
+type EventCriteriaPagination struct {
+	Events     []*Event   `json:"events"`
+	Pagination Pagination `json:"pagination"`
+}
+
 type EventRepository interface {
-	EventList(ctx context.Context, ctr *EventCriteria) ([]*Event, error)
+	EventList(ctx context.Context, ctr *EventCriteria) (*EventCriteriaPagination, error)
 }
 
 type EventUseCase interface {
-	EventList(ctx context.Context, ctr *EventCriteria) ([]*Event, error)
+	EventList(ctx context.Context, ctr *EventCriteria) (*EventCriteriaPagination, error)
 }

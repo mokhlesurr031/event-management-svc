@@ -2,6 +2,7 @@ package http
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -29,13 +30,15 @@ func (e *WorkshopHandler) WorkshopList(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	workshops := &domain.WorkshopCriteria{}
 
-	eventList, err := e.WorkshopUseCase.WorkshopList(ctx, workshops)
+	workshopList, err := e.WorkshopUseCase.WorkshopList(ctx, workshops)
+
+	fmt.Println(workshopList)
 
 	if err != nil {
 		log.Println(err)
 	}
 
-	if err := json.NewEncoder(w).Encode(eventList); err != nil {
+	if err := json.NewEncoder(w).Encode(workshopList); err != nil {
 		log.Println(err)
 	}
 

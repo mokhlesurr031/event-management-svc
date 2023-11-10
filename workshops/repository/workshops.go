@@ -21,12 +21,17 @@ type WorkshopSQLStorage struct {
 func (e *WorkshopSQLStorage) WorkshopList(ctx context.Context, ctr *domain.WorkshopCriteria) ([]*domain.Workshop, error) {
 	workshopList := make([]*domain.Workshop, 0)
 
-	fmt.Println("called", workshopList)
 	if err := e.db.WithContext(ctx).Find(&workshopList).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return nil, nil
 		}
 		return nil, err
 	}
+
+	for _, workshop := range workshopList {
+		fmt.Println(workshop.EventId)
+
+	}
+
 	return workshopList, nil
 }

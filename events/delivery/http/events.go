@@ -1,6 +1,7 @@
 package http
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -27,11 +28,18 @@ func NewHttpHandler(r *chi.Mux, eventUseCase domain.EventUseCase) {
 func (e *EventHandler) EventList(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
 
+	perPage := r.URL.Query().Get("perPage")
+	currentPage := r.URL.Query().Get("currentPage")
+
+	if perPage == "" && currentPage == "" {
+		fmt.Println("AAAA")
+	}
+
 	ctx := r.Context()
+	ctx = context.WithValue(ctx, "perPage", perPage)
+	ctx = context.WithValue(ctx, "currentPage", currentPage)
+
 	events := &domain.EventCriteria{}
-
-	fmt.Println("EEEE", events)
-
 	eventList, err := e.EventsUseCase.EventList(ctx, events)
 
 	if err != nil {

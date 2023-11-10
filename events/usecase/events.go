@@ -16,6 +16,6 @@ type EventUseCase struct {
 	repo domain.EventRepository
 }
 
-func (e *EventUseCase) EventList(ctx context.Context, ctr *domain.EventCriteria) ([]*domain.Event, error) {
+func (e *EventUseCase) EventList(ctx context.Context, ctr *domain.EventCriteria) (*domain.EventCriteriaPagination, error) {
 	return e.repo.EventList(ctx, ctr)
 }
