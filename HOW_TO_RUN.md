@@ -3,6 +3,10 @@
 
 ### Using Docker...
 
+Prerequisite:
+
+1. Need to have docker installed. 
+
 Execute
 ```'sh
 docker-compose up
@@ -13,6 +17,15 @@ The application shoul start running on **8081** port.
 
 
 ### Using Kubernetes Local Cluster...
+
+
+Prerequisite:
+
+1. Need to have docker installed. 
+2. Need to have kubernetes installed. 
+3. Need to have helm installed. 
+4. Need to have helmfile installed.
+
 
 Run the application service (MySQL)
 
