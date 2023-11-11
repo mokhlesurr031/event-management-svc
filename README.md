@@ -22,7 +22,10 @@ A basic Event Management System backend build with go pramming language. Is has 
 ![!DBSchema](static/db-diagram.png)
 
 
-## [ Click to Know How to Run](HOW_TO_RUN.md) 
+## [ Click Here to Know How to Run](HOW_TO_RUN.md) 
+
+## [Click Here to Test APIs][TEST.md]
+
 
 
 
@@ -283,6 +286,7 @@ Method: GET
 </details>
 
 
+
 ## Create Reservation in Workshops
 
 Request
@@ -309,7 +313,7 @@ Request
 
 
 Response
-------
+-----
 
 **Status Code**: 201
 <details>
