@@ -7,7 +7,7 @@ Prerequisite:
 
 1. Need to have docker installed. 
 
-Execute
+#### Execute
 ```'sh
 docker-compose up
 ```
@@ -27,7 +27,13 @@ Prerequisite:
 4. Need to have helmfile installed.
 
 
-Run the application service (MySQL)
+Execute
+
+```sh
+cd deployment
+```
+
+#### Run the application service (MySQL)
 
 ```sh
 helmfile -f helmfile-services.yaml sync
