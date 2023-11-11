@@ -1,0 +1,4 @@
+apiVersion: v1
+name: ems-backend
+description: A Helm chart for Event Management System backend APIs
+version: 0.1.0

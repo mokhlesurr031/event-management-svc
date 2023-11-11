@@ -1,0 +1,9 @@
+auth:
+  rootPassword: "rootsecret"
+  createDatabase: true
+  database: "ems"
+  username: "admin"
+  password: "secret"
+  replicationUser: replicator
+  replicationPassword: ""
+  existingSecret: ""

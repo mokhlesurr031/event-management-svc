@@ -1,0 +1,14 @@
+database:
+  name: ems
+  port: 3306
+  host: mysql
+  username: admin
+  password: secret
+
+
+deployment:
+  containerPort: 8081
+
+
+service:
+  port: 80

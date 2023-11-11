@@ -1,0 +1,9 @@
+{{ $app_name := env "APP_NAME" | default "ems-backend"}}
+
+releases:
+- name: ems-app
+  namespace: {{ $app_name }}
+  chart: './chart'
+  version: 0.1.0
+  values:
+  - values/app/values.yaml

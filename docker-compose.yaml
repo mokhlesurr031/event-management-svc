@@ -11,3 +11,29 @@ services:
       MYSQL_DATABASE: ems
     ports:
       - "3306:3306"
+    networks:
+      - go-app-network
+
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ems-app
+    environment: 
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ems
+      DB_USERNAME: admin
+      DB_PASSWORD: secret
+    ports: 
+      - 8081:8081
+    depends_on:
+      - mysql
+    restart: always
+    networks:
+        - go-app-network
+
+networks:
+  go-app-network:
+    driver: bridge

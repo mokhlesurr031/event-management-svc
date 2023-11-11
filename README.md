@@ -22,6 +22,9 @@ A basic Event Management System backend build with go pramming language. Is has 
 ![!DBSchema](static/db-diagram.png)
 
 
+## [ Click to Know How to Run](HOW_TO_RUN.md) 
+
+
 
 ## EndPoints_
 
@@ -272,11 +275,6 @@ Method: GET
 }
 ```
 </details>
-
-
-
-
-
 
 
 ## Create Reservation in Workshops

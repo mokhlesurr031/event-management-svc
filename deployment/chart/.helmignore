@@ -1,0 +1,10 @@
+.project
+.idea/
+*.tmproj
+.vscode/
+
+.git/
+.gitignore
+
+
+.DS_Store
