@@ -33,6 +33,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 #### Request
 -----
+
 **Method**: GET
 
 ***URL***:
@@ -44,6 +45,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 #### Response
 --------
+
 **Status Code**: 200
 
 <details>
@@ -139,6 +141,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 #### Response
 --------
+
 **Status Code**: 200
 
 <details>
@@ -170,6 +173,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 #### Response
 --------
+
 **Status Code**: 200
 
 <details>
@@ -249,6 +253,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 #### Request
 -----
+
 Method: GET
 
 **URL**:
@@ -259,6 +264,7 @@ Method: GET
 
 #### Response
 --------
+
 **Status Code**: 200
 
 <details>
