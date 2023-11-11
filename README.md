@@ -25,10 +25,10 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 ## EndPoints_
 
-## Get all events
+### Get all events
 
 
-Request
+#### Request
 -----
 **Method**: GET
 
@@ -39,7 +39,7 @@ Request
 ```
 
 
-Response
+#### Response
 --------
 **Status Code**: 200
 
@@ -122,9 +122,9 @@ Response
 
 
 
-## Get Event Details
+### Get Event Details
 
-Request
+#### Request
 -----
 
 **URL**:
@@ -134,7 +134,7 @@ Request
 ```
 
 
-Response
+#### Response
 --------
 **Status Code**: 200
 
@@ -153,9 +153,9 @@ Response
 </details>
 
 
-## Get Workshop List by Event
+### Get Workshop List by Event
 
-Request
+#### Request
 -----
 
 **URL**:
@@ -165,7 +165,7 @@ Request
 ```
 
 
-Response
+#### Response
 --------
 **Status Code**: 200
 
@@ -242,9 +242,9 @@ Response
 
 
 
-## Get Workshop Details
+### Get Workshop Details
 
-Request
+#### Request
 -----
 Method: GET
 
@@ -254,7 +254,7 @@ Method: GET
 {domain}/api/v1/workshops/details?workshopId={WorkshopID}
 ```
 
-Response
+#### Response
 --------
 **Status Code**: 200
 
