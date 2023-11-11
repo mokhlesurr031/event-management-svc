@@ -12,7 +12,11 @@ Prerequisite:
 docker-compose up
 ```
 
-The application shoul start running on **8081** port. 
+The application shoul start running on local port **8081**.
+
+### Dummy db table data_
+The db is port-forwarded to 3306 on local machine. Execute [This Dummy Datas](zzz-dummy-data) to the respected tables. 
+
 
 
 
@@ -44,3 +48,10 @@ Run the application
 ```sh
 helmfile sync
 ```
+
+Then you need to port-forward the application service with local machine so that you can access the application.
+
+
+### Dummy db table data_
+
+Port-forward the database with local machine. Then execute [This Dummy Datas](zzz-dummy-data) to the respected tables. 
