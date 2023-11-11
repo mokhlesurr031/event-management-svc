@@ -24,7 +24,7 @@ A basic Event Management System backend build with go pramming language. Is has 
 
 ## [ Click Here to Know How to Run](HOW_TO_RUN.md) 
 
-## [Click Here to Test APIs][TEST.md]
+## [Click Here to Test APIs](TEST.md)
 
 
 
